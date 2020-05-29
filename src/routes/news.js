@@ -3,6 +3,10 @@ const axios = require('axios');
 
 const router = express.Router();
 
+// @route   GET /api/news/:query
+// @desc    Get news related to currency
+// @access  Public
+
 router.get('/:query', async (req, res) => {
   try {
     const { query } = req.params;

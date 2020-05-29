@@ -4,7 +4,7 @@ const express = require('express');
 
 // routes
 const newsRoutes = require('./routes/news');
-const currencyRoutes = require('./routes/currency');
+const exchangeRatesRoutes = require('./routes/exchangeRates');
 
 // initialize app
 const app = express();
@@ -13,7 +13,7 @@ const app = express();
 // this will allow us to get the data in req.body
 app.use(express.json({ extended: false }));
 
-app.use('/api/currency', currencyRoutes);
+app.use('/api/exchangeRates', exchangeRatesRoutes);
 app.use('/api/news', newsRoutes);
 
 const PORT = process.env.PORT || 5000;

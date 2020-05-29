@@ -3,6 +3,10 @@ const axios = require('axios');
 
 const router = express.Router();
 
+// @route   GET /api/currency/:query
+// @desc    Get currency rates based on query
+// @access  Public
+
 router.get('/:query', async (req, res) => {
   try {
     const { query } = req.params;
