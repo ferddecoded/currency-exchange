@@ -1,4 +1,8 @@
-module.exports = [
+const express = require('express');
+
+const router = express.Router();
+
+const data = [
   {
     name: 'US Dollar',
     abbreviation: 'USD',
@@ -199,3 +203,13 @@ module.exports = [
     flagURL: 'http://www.geonames.org/flags/l/il.gif',
   },
 ];
+
+// @route   GET /api/currencyData
+// @desc    Get initial currency data
+// @access  Public
+
+router.get('/', (req, res) => {
+  res.status(200).json(data);
+});
+
+module.exports = router;
