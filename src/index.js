@@ -7,6 +7,7 @@ const connectDB = require('./config/db');
 const newsRoutes = require('./routes/news');
 const exchangeRatesRoutes = require('./routes/exchangeRates');
 const currencyDataRoutes = require('./routes/currencyData');
+const userRoutes = require('./routes/user');
 
 // initialize app
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.json({ extended: false }));
 app.use('/api/exchangeRates', exchangeRatesRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/currencyData', currencyDataRoutes);
+app.use('/api/users', userRoutes);
 
 const PORT = process.env.PORT || 5000;
 
