@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
+const Currency = require('../models/Currency');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -35,7 +37,7 @@ router.post(
       const { name, email, password } = req.body;
 
       // check if the email is already created
-      let user = User.findOne({ email });
+      let user = await User.findOne({ email });
       // if exists, throw an error (400)
       if (user) {
         return res
@@ -84,5 +86,22 @@ router.post(
     }
   }
 );
+
+// @route   DELETE /api/user/
+// @desc    Delete a user
+// @access  Private
+
+router.delete('/', auth, async (req, res) => {
+  // find currency collection owned by user & delete
+  await Currency.deleteMany({ user: req.user.id });
+  // find user
+  const user = await User.findOne({ _id: req.user.id });
+  // if user exists remove user
+  if (user) {
+    await user.remove();
+  }
+
+  res.json({ msg: 'User deleted' });
+});
 
 module.exports = router;
