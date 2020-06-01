@@ -18,7 +18,10 @@ const app = express();
 connectDB();
 
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000',
+  origin:
+    process.env.NODE_ENV === 'production'
+      ? process.env.CLIENT_URL
+      : 'http://localhost:3000',
 };
 
 app.use(cors(corsOptions));
