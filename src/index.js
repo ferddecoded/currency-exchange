@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db');
 // const path = require('path');
 
@@ -15,6 +16,12 @@ const currenciesRoutes = require('./routes/currency');
 const app = express();
 
 connectDB();
+
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000',
+};
+
+app.use(cors(corsOptions));
 
 // Init Middleware
 // this will allow us to get the data in req.body
