@@ -38,6 +38,9 @@
     "nodemon": "^2.0.3",
     "prettier": "^1.19.1"
   },
+  "engines": {
+    "node": "10.16.x"
+  },
   "bugs": {
     "url": "https://github.com/ferddecoded/currency-exchange/issues"
   },
