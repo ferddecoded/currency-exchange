@@ -21,10 +21,12 @@ router.get('/:query', async (req, res) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://newsapi.org/v2/everything?q=${query}%20currency&pageSize=3`,
-      config
-    );
+    const { data } = await axios
+      .get(
+        `https://newsapi.org/v2/everything?q=${query}%20currency&pageSize=3`,
+        config
+      )
+      .catch(() => []);
     res.json(data);
   } catch (error) {
     console.log(error.message);
