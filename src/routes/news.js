@@ -22,7 +22,7 @@ router.get('/:query', async (req, res) => {
     };
 
     const { data } = await axios.get(
-      `https://newsapi.org/v2/everything?q=${query}%20currency`,
+      `https://newsapi.org/v2/everything?q=${query}%20currency&pageSize=3`,
       config
     );
     res.json(data);
