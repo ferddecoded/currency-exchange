@@ -17,17 +17,17 @@ router.get('/:query', async (req, res) => {
 
     const config = {
       headers: {
-        'X-API-Key': process.env.NEWS_API_KEY,
+        'Ocp-Apim-Subscription-Key': process.env.NEWS_API_KEY,
       },
     };
 
-    const { data } = await axios
-      .get(
-        `https://newsapi.org/v2/everything?q=${query}%20currency&pageSize=3`,
-        config
-      )
-      .catch(() => []);
-    res.json(data);
+    const {
+      data: { value },
+    } = await axios.get(
+      `https://api.cognitive.microsoft.com/bing/v7.0/news/search?q=${query}%20currency&count=3`,
+      config
+    );
+    res.json(value);
   } catch (error) {
     console.log(error.message);
     res.status(500).json('Server Error');
