@@ -8,7 +8,7 @@ const CurrencySchema = mongoose.Schema({
   currencies: [
     {
       currency: { type: String, required: true, unique: true },
-      index: { type: Number, required: true, unique: true },
+      index: { type: Number, unique: true },
     },
   ],
 });
